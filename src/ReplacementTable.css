@@ -1,0 +1,37 @@
+.results-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.results-table th,
+.results-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+}
+
+.results-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.hit {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.miss {
+    background-color: #FF5733;
+    color: white;
+    font-weight: bold;
+}
+
+.summary {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
