@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+# Page Replacement Simulator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Group Members:
+- **K. Kanistan** (2021E064)
+- **P. Pogitha** (2021E112)
 
-## Available Scripts
+## Description:
+The **Page Replacement Simulator** is a web application designed to visualize the operation of four different page replacement algorithms. The simulator allows users to input a reference string (the sequence of page accesses) and the number of frames (the available memory space) and then view the step-by-step simulation of the algorithms. It calculates page hits and faults and provides a final result, highlighting the best-performing algorithm.
 
-In the project directory, you can run:
+## Supported Algorithms:
+- **FIFO (First-In-First-Out)**
+- **LRU (Least Recently Used)**
+- **LFU (Least Frequently Used)**
+- **MFU (Most Frequently Used)**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How the Algorithms Work:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. **FIFO (First-In-First-Out)**:
+**FIFO** is the simplest page replacement algorithm. It replaces the oldest page in memory when a page fault occurs.
 
-### `npm test`
+**Steps:**
+1. Initialize the frames with empty spaces.
+2. Traverse the reference string (sequence of page accesses).
+3. For each page:
+   - If the page is already in memory, it is a **hit**.
+   - If the page is not in memory, it is a **fault**.
+   - Replace the oldest page in memory with the new page.
+   - Keep track of the order in which pages were inserted.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Example:**
+Let’s say we have 3 frames and the reference string is: `7 0 1 2 0 3 0 4 2 3 0 3`.
 
-### `npm run build`
+- Initially, all frames are empty: `- - -`
+- Insert `7`: `7 - -`
+- Insert `0`: `7 0 -`
+- Insert `1`: `7 0 1`
+- Page fault for `2`, replace `7`: `2 0 1`
+- Page fault for `0`, replace `1`: `2 0 0`
+- Continue replacing the oldest pages when page faults occur.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. **LRU (Least Recently Used)**:
+**LRU** replaces the least recently used page when a page fault occurs. The idea is to keep track of the last time a page was accessed and replace the one that hasn't been used for the longest time.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Steps:**
+1. Initialize the frames with empty spaces.
+2. Traverse the reference string.
+3. For each page:
+   - If the page is in memory, it is a **hit**, and we update the time it was accessed.
+   - If the page is not in memory, it is a **fault**.
+   - Replace the least recently used page by looking at the timestamps of each page.
+   - Update the access time of the newly added page.
 
-### `npm run eject`
+**Example:**
+Let’s say we have 3 frames and the reference string is: `7 0 1 2 0 3 0 4 2 3 0 3`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Initially, all frames are empty: `- - -`
+- Insert `7`: `7 - -`
+- Insert `0`: `7 0 -`
+- Insert `1`: `7 0 1`
+- Page fault for `2`, replace the least recently used page `7`: `2 0 1`
+- Page fault for `0`, replace the least recently used page `1`: `2 0 0`
+- Continue replacing the least recently used page when a page fault occurs.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3. **LFU (Least Frequently Used)**:
+**LFU** replaces the page that has been used the least number of times. The idea is to keep track of the frequency of each page and replace the one that is accessed the least.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Steps:**
+1. Initialize the frames with empty spaces and a frequency counter for each page.
+2. Traverse the reference string.
+3. For each page:
+   - If the page is in memory, it is a **hit**, and its frequency is incremented.
+   - If the page is not in memory, it is a **fault**.
+   - If all frames are full, replace the page with the lowest frequency.
+   - If there is a tie (multiple pages with the same frequency), replace the one that was accessed first.
 
-## Learn More
+**Example:**
+Let’s say we have 3 frames and the reference string is: `7 0 1 2 0 3 0 4 2 3 0 3`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Initially, all frames are empty: `- - -`
+- Insert `7`: `7 - -`
+- Insert `0`: `7 0 -`
+- Insert `1`: `7 0 1`
+- Page fault for `2`, replace `7` (least frequent): `2 0 1`
+- Page fault for `0`, increase frequency for `0`: `2 0 0`
+- Continue replacing the least frequently used page when a page fault occurs.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### 4. **MFU (Most Frequently Used)**:
+**MFU** replaces the page that has been used the most number of times. The idea is to keep track of the frequency of each page and replace the one that is accessed the most.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Steps:**
+1. Initialize the frames with empty spaces and a frequency counter for each page.
+2. Traverse the reference string.
+3. For each page:
+   - If the page is in memory, it is a **hit**, and its frequency is incremented.
+   - If the page is not in memory, it is a **fault**.
+   - If all frames are full, replace the page with the highest frequency.
+   - If there is a tie (multiple pages with the same frequency), replace the one that was accessed first.
 
-### Analyzing the Bundle Size
+**Example:**
+Let’s say we have 3 frames and the reference string is: `7 0 1 2 0 3 0 4 2 3 0 3`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Initially, all frames are empty: `- - -`
+- Insert `7`: `7 - -`
+- Insert `0`: `7 0 -`
+- Insert `1`: `7 0 1`
+- Page fault for `2`, replace `1` (most frequent): `2 0 1`
+- Page fault for `0`, increase frequency for `0`: `2 0 0`
+- Continue replacing the most frequently used page when a page fault occurs.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+## Technology Used
+- React: Frontend library for building user interfaces.
+- React Router: For navigation between pages.
+- CSS: For styling the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## How to Use:
 
-### Deployment
+### Running the Application Locally:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+To run the project locally, follow the steps below:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/page-replacement-simulator.git
