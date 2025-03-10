@@ -191,7 +191,7 @@ const App = () => {
         <Navbar />
         <div className="main-content">
           <Routes>
-            <Route path="/Page-Replacement-Simulator" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutUs />} />
           </Routes>
         </div>
