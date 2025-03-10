@@ -191,7 +191,10 @@ const App = () => {
         <Navbar />
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="https://kkanistan06.github.io/Page-Replacement-Simulator/"
+              element={<Home />}
+            />
             <Route path="/about" element={<AboutUs />} />
           </Routes>
         </div>
