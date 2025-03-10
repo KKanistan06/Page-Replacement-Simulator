@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Page-Replacement-Simulator/static/css/main.629e458f.css",
-    "main.js": "/Page-Replacement-Simulator/static/js/main.0d2804ed.js",
-    "static/js/453.a25c0f15.chunk.js": "/Page-Replacement-Simulator/static/js/453.a25c0f15.chunk.js",
-    "index.html": "/Page-Replacement-Simulator/index.html",
-    "main.629e458f.css.map": "/Page-Replacement-Simulator/static/css/main.629e458f.css.map",
-    "main.0d2804ed.js.map": "/Page-Replacement-Simulator/static/js/main.0d2804ed.js.map",
-    "453.a25c0f15.chunk.js.map": "/Page-Replacement-Simulator/static/js/453.a25c0f15.chunk.js.map"
+    "main.css": "/Page-Replacement-Algorithms/static/css/main.629e458f.css",
+    "main.js": "/Page-Replacement-Algorithms/static/js/main.7a59dae5.js",
+    "static/js/453.a25c0f15.chunk.js": "/Page-Replacement-Algorithms/static/js/453.a25c0f15.chunk.js",
+    "index.html": "/Page-Replacement-Algorithms/index.html",
+    "main.629e458f.css.map": "/Page-Replacement-Algorithms/static/css/main.629e458f.css.map",
+    "main.7a59dae5.js.map": "/Page-Replacement-Algorithms/static/js/main.7a59dae5.js.map",
+    "453.a25c0f15.chunk.js.map": "/Page-Replacement-Algorithms/static/js/453.a25c0f15.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.629e458f.css",
-    "static/js/main.0d2804ed.js"
+    "static/js/main.7a59dae5.js"
   ]
 }
